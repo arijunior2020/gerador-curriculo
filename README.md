@@ -18,7 +18,6 @@ Este é um aplicativo para gerar currículos em formato PDF a partir de informa�
 
 1. Clone este repositório:
 
-```sh
 git clone https://github.com/seu-usuario/gerador-curriculo.git
 
 cd gerador-curriculo
