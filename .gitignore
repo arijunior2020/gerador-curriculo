@@ -1,0 +1,12 @@
+# Ignorar a chave privada
+key-gerador-curriculo.pem
+
+# Ignorar diretórios de dependências
+node_modules/
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos de build/output
+dist/
+build/
