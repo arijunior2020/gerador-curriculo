@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Currículo</title>
+    <!-- Adicione o link para a biblioteca de ícones (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-eqZ3UE8vuyEkAx+awVjZ9L33mtBmB3chO0G5wXs11p+l/8IS5fM7PhLaoNcnl+bFwJj37HE6YbxnY1xQLyyuwg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Gerador de Currículo</h1>
+    <br />
+    <form id="resume-form" action="/generate-pdf" method="post">
+        <div class="form-group">
+            <label for="name" class="form-label">Nome:</label>
+            <input type="text" id="name" name="name" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone" class="form-label">Telefone:</label>
+            <input type="tel" id="phone" name="phone" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address" class="form-label">Endereço:</label>
+            <input type="text" id="address" name="address" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label for="objective">Objetivo:</label>
+            <textarea id="objective" name="objective" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="experience">Experiência Profissional:</label>
+            <div id="experience-section">
+                <div class="experience-entry">
+                    <label for="company">Empresa:</label>
+                    <input type="text" id="company" name="company[]" required>
+                    <label for="period">Período:</label>
+                    <input type="text" id="period" name="period[]" required>
+                    <label for="activities">Atividades:</label>
+                    <textarea id="activities" name="activities[]" required></textarea>
+                </div>
+            </div>
+            <button type="button" onclick="addExperience()">Adicionar Experiência</button>
+        </div>
+
+        <div class="form-group">
+            <label for="education">Educação:</label>
+            <div id="education-section">
+                <div class="education-entry">
+                    <label for="institution">Instituição:</label>
+                    <input type="text" id="institution" name="institution[]" required>
+                    <label for="education-period">Período:</label>
+                    <input type="text" id="education-period" name="educationPeriod[]" required>
+                </div>
+            </div>
+            <button type="button" onclick="addEducation()">Adicionar Educação</button>
+        </div>
+
+        <div class="form-group">
+            <label for="courses">Cursos:</label>
+            <textarea id="courses" name="courses" required></textarea>
+        </div>
+
+        <button type="submit">Gerar PDF</button>
+    </form>
+    <script src="/js/script.js"></script>
+</body>
+</html>

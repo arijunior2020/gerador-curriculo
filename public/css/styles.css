@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para os ícones */
+label i {
+    margin-right: 10px;
+}
+
+.experience-entry, .education-entry {
+    margin-bottom: 20px;
+}
+.form-label-large {
+    font-size: 18px; /* Tamanho da fonte maior */
+    font-weight: bold; /* Negrito */
+    color: black; /* Cor da fonte preta */
+    text-align: center; /* Centralizado */
+    display: block; /* Para que cada rótulo ocupe uma linha inteira */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+.form-input-large {
+    width: 100%; /* Largura total */
+    padding: 12px; /* Padding maior */
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
