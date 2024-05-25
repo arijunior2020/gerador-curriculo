@@ -22,3 +22,4 @@ Este é um aplicativo para gerar currículos em formato PDF a partir de informa�
 git clone https://github.com/seu-usuario/gerador-curriculo.git
 cd gerador-curriculo
 
+***
