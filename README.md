@@ -20,54 +20,52 @@ Este é um aplicativo para gerar currículos em formato PDF a partir de informa�
 
 ```sh
 git clone https://github.com/seu-usuario/gerador-curriculo.git
+
 cd gerador-curriculo
 
 2. Instale as dependências:
 
 npm install
 
-Executando Localmente
+3. Executando Localmente
+
 Para executar a aplicação localmente:
 
-```sh
-Copiar código
 npm start
+
 A aplicação estará disponível em http://localhost:3000.
 
-Usando Docker
+4. Usando Docker
+
 Construir a Imagem Docker
 
-```sh
-Copiar código
 docker build -t gerador-curriculo:v1.0 .
 
-Executar o Container
-```sh
-Copiar código
-docker run -p 80:3000 gerador-curriculo:v1.0
-A aplicação estará disponível em http://localhost.
+5. Executar o Container
 
-Implantação no AWS
+docker run -p 80:3000 gerador-curriculo:v1.0
+
+A aplicação estará disponível em http://localhost
+
+6. Implantação no AWS
+
 Pré-requisitos
 Conta AWS configurada
 AWS CLI configurada
+
 Passos
 Crie um repositório no Amazon ECR (Elastic Container Registry).
+
 Faça login no ECR:
 
-```sh
-Copiar código
 aws ecr get-login-password --region <sua-regiao> | docker login --username AWS --password-stdin <seu-repositorio>
+
 Tag a imagem Docker:
 
-```sh
-Copiar código
 docker tag gerador-curriculo:v1.0 <seu-repositorio>:v1.0
 
 Push a imagem para o ECR:
 
-```sh
-Copiar código
 docker push <seu-repositorio>:v1.0
 
 Crie um Cluster ECS e defina uma tarefa usando a imagem do ECR.
@@ -75,6 +73,7 @@ Crie um Cluster ECS e defina uma tarefa usando a imagem do ECR.
 Configure um serviço ECS para executar a tarefa.
 
 Certificado SSL
+
 Para adicionar um certificado SSL, você pode usar o AWS Certificate Manager (ACM) e configurar um Application Load Balancer (ALB) para distribuir o tráfego HTTPS para sua instância EC2 ou ECS.
 
 Tecnologias Utilizadas
