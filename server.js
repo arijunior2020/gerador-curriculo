@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const PDFDocument = require('pdfkit');
 const streamBuffers = require('stream-buffers');
 const cors = require('cors');
+const connection = require('./config/db'); // Importe a conexão com o banco de dados
 
 const app = express();
 
@@ -10,10 +11,26 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+// Rota para a página inicial
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html');
 });
 
+// Rota para o endpoint de login
+app.post('/login', (req, res) => {
+    const { email, senha } = req.body;
+
+    // Verifique as credenciais do usuário (substitua esta lógica pela sua própria)
+    if (email === 'usuario@example.com' && senha === 'senha123') {
+        // Se as credenciais forem válidas, envie uma resposta de sucesso
+        res.status(200).json({ mensagem: 'Login bem-sucedido' });
+    } else {
+        // Se as credenciais forem inválidas, envie uma resposta de erro
+        res.status(401).json({ erro: 'Credenciais inválidas' });
+    }
+});
+
+// Rota para a geração do PDF
 app.post('/generate-pdf', (req, res) => {
     const { name, email, phone, address, objective, company, period, activities, institution, educationPeriod, courses } = req.body;
 
@@ -21,9 +38,11 @@ app.post('/generate-pdf', (req, res) => {
     const writableStreamBuffer = new streamBuffers.WritableStreamBuffer({
         initialSize: (100 * 1024),
         incrementAmount: (10 * 1024)
-    });
+});
 
     doc.pipe(writableStreamBuffer);
+
+
 
     // Cabeçalho
     const formatField = (label, value) => {
@@ -113,3 +132,21 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+// Função para conectar ao banco de dados com retentativas
+function connectDatabase() {
+    connection.connect((err) => {
+        if (err) {
+            console.error('Erro ao conectar ao banco de dados:', err);
+            console.log('Tentando novamente em 5 segundos...');
+            setTimeout(connectDatabase, 5000); // Tenta novamente em 5 segundos
+        } else {
+            console.log('Conexão bem-sucedida ao banco de dados MySQL');
+            app.listen(PORT, () => {
+                console.log(`Servidor rodando na porta ${PORT}`);
+            });
+        }
+    });
+}
+
+connectDatabase();
