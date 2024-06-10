@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/css/estilo.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container sign-in-container">
+            <form action="/login" method="post">
+                <h1>Login</h1>
+                <input type="email" placeholder="Email" required />
+                <input type="password" placeholder="Senha" required />
+                <button>Login</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1>Bem-vindo!</h1>
+                    <img src="/public/img/seucurriculo.com.png" alt="Logo da empresa" class="logo"/>
+                    <button class="ghost" id="signUp">Registrar-se</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signUp').addEventListener('click', () => {
+            window.location.href = 'register.html';
+        });
+    </script>
+</body>
+</html>
