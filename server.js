@@ -4,6 +4,7 @@ const PDFDocument = require('pdfkit');
 const streamBuffers = require('stream-buffers');
 const cors = require('cors');
 
+// Criação do app Express
 const app = express();
 
 app.use(cors());
@@ -15,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/generate-pdf', (req, res) => {
-    const { name, email, phone, address, objective, company, period, activities, institution, educationPeriod, courses } = req.body;
+    const { name, email, phone, address, objective, company, startPeriod, endPeriod, activities, institution, educationStartPeriod, educationEndPeriod, courses } = req.body;
 
     const doc = new PDFDocument();
     const writableStreamBuffer = new streamBuffers.WritableStreamBuffer({
@@ -27,7 +28,7 @@ app.post('/generate-pdf', (req, res) => {
 
     // Cabeçalho
     const formatField = (label, value) => {
-        doc.fontSize(16).fillColor('black').text(`${label} ${value}`, { align: 'center', font: 'Helvetica-Bold' });
+        doc.fontSize(16).fillColor('black').text(`${label} ${value}`, { align: 'left' });
     };
 
     formatField('Nome:', name);
@@ -62,35 +63,22 @@ app.post('/generate-pdf', (req, res) => {
     addHorizontalLine();
 
     // Seção de Experiência Profissional
-    if (company && period && activities) {
+    if (company && startPeriod && endPeriod && activities) {
         addSection('Experiência Profissional');
-        if (Array.isArray(company)) {
-            for (let i = 0; i < company.length; i++) {
-                doc.fontSize(12).text(`Empresa: ${company[i]}`);
-                doc.text(`Período: ${period[i]}`);
-                doc.text(`Atividades: ${cleanText(activities[i])}`, { align: 'justify' });
-                addHorizontalLine();
-            }
-        } else {
-            doc.fontSize(12).text(`Empresa: ${company}`);
-            doc.text(`Período: ${period}`);
-            doc.text(`Atividades: ${cleanText(activities)}`, { align: 'justify' });
+        for (let i = 0; i < company.length; i++) {
+            doc.fontSize(12).text(`Empresa: ${company[i]}`);
+            doc.text(`Período: ${startPeriod[i]} - ${endPeriod[i]}`);
+            doc.text(`Atividades: ${cleanText(activities[i])}`, { align: 'justify' });
             addHorizontalLine();
         }
     }
 
     // Seção de Educação
-    if (institution && educationPeriod) {
+    if (institution && educationStartPeriod && educationEndPeriod) {
         addSection('Educação');
-        if (Array.isArray(institution)) {
-            for (let i = 0; i < institution.length; i++) {
-                doc.fontSize(12).text(`Instituição: ${institution[i]}`);
-                doc.text(`Período: ${educationPeriod[i]}`);
-                addHorizontalLine();
-            }
-        } else {
-            doc.fontSize(12).text(`Instituição: ${institution}`);
-            doc.text(`Período: ${educationPeriod}`);
+        for (let i = 0; i < institution.length; i++) {
+            doc.fontSize(12).text(`Instituição: ${institution[i]}`);
+            doc.text(`Período: ${educationStartPeriod[i]} - ${educationEndPeriod[i]}`);
             addHorizontalLine();
         }
     }
@@ -109,6 +97,7 @@ app.post('/generate-pdf', (req, res) => {
     });
 });
 
+// Iniciar o servidor na porta especificada
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
