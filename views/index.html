@@ -43,8 +43,10 @@
                 <div class="experience-entry">
                     <label for="company">Empresa:</label>
                     <input type="text" id="company" name="company[]" required>
-                    <label for="period">Período:</label>
-                    <input type="text" id="period" name="period[]" required>
+                    <label for="startPeriod">Período Inicial:</label>
+                    <input type="date" id="startPeriod" name="startPeriod[]" required>
+                    <label for="endPeriod">Período Final:</label>
+                    <input type="date" id="endPeriod" name="endPeriod[]">
                     <label for="activities">Atividades:</label>
                     <textarea id="activities" name="activities[]" required></textarea>
                 </div>
@@ -58,8 +60,10 @@
                 <div class="education-entry">
                     <label for="institution">Instituição:</label>
                     <input type="text" id="institution" name="institution[]" required>
-                    <label for="education-period">Período:</label>
-                    <input type="text" id="education-period" name="educationPeriod[]" required>
+                    <label for="educationStartPeriod">Período Inicial:</label>
+                    <input type="date" id="educationStartPeriod" name="educationStartPeriod[]" required>
+                    <label for="educationEndPeriod">Período Final:</label>
+                    <input type="date" id="educationEndPeriod" name="educationEndPeriod[]" required>
                 </div>
             </div>
             <button type="button" onclick="addEducation()">Adicionar Educação</button>
