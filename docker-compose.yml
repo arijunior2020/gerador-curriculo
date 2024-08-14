@@ -4,11 +4,22 @@ services:
   web:
     build: .
     ports:
-      - "8090:3000"
+      - "8080:3000"
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     environment:
       - NODE_ENV=development
+    depends_on:
+      - db  # Adicionando a dependência para o contêiner do banco de dados
 
-    
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: seucurriculo@2024
+      MYSQL_DATABASE: seucurriculo-db
+      MYSQL_USER: seucurriculo
+      MYSQL_PASSWORD: seucurriculo@2024
+    ports:
+      - "3320:3306"
