@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 {
   "name": "resume-generator",
   "version": "1.0.0",
@@ -35,4 +35,4 @@
     "stream-buffers": "^3.0.2"
   }
 }
->>>>>>> 35b93253ee7f7bd785076f8780403001c4c05be2
+
